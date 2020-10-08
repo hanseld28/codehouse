@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <h1> Listagem de livros </h1>
+
+        <table id="booksTable">
+            <tr>
+                <td>ID</td>
+                <td>Título</td>
+                <td>Preço</td>
+                <td>Editar</td>
+                <td>Remover</td>
+            </tr>
+                <tr id=`book_${book.id}` for (book in data.books)>
+                <td>${book.id}</td>
+                <td>${book.title}</td>
+                <td>${book.price}</td>
+                <td>
+                    <a
+                        href=`/books/${book.id}/edit`
+                    >Editar</a>
+                </td>
+                <td>
+                    <a 
+                        href="#"
+                        data-id=`${book.id}` data-method="DELETE" 
+                    >Remover</a>
+                </td>
+            </tr>
+        </table> 
+
+        <script src="/static/js/remove-book.js"></script>
+    </body> 
+</html>

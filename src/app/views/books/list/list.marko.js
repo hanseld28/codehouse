@@ -18,16 +18,16 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
 function render(input, out, __component, component, state) {
   var data = input;
 
-  out.w("<html><head><meta charset=\"utf-8\"></head><body>");
+  out.w("<html><head><meta charset=\"utf-8\"><link rel=\"stylesheet\" href=\"/static/css/bootstrap.min.css\"><link rel=\"stylesheet\" href=\"/static/css/fontawesome.min.css\"><link rel=\"stylesheet\" href=\"/static/css/codehouse.css\"></head><body>");
 
   component_globals_tag({}, out);
 
-  out.w("<h1> Listagem de livros </h1><table id=\"booksTable\"><tr><td>ID</td><td>Título</td><td>Preço</td><td>Editar</td><td>Remover</td></tr>");
+  out.w("<header class=\"mainHeader\"><div class=\"container\"><div class=\"row align-items-center\"><div class=\"col-4\"><h1 class=\"logo\"><img src=\"/static/images/logo-codehouse.svg\" alt=\"Casa do Código\"></h1></div><div class=\"mainHeader-navigation col-8\"><a href=\"#\" class=\"login\"><i class=\"fas fa-sign-in-alt\"></i>Login</a></div></div></div></header><main class=\"mainContent\"><div class=\"container\"><h1> Listagem de livros </h1><table id=\"booksTable\" class=\"table table-striped table-hover\"><thead class=\"thead-dark\"><tr><td>ID</td><td>Título</td><td>Preço</td><td>Editar</td><td>Remover</td></tr></thead><tbody>");
 
-  var for__12 = 0;
+  var for__28 = 0;
 
   marko_forEach(data.books, function(book) {
-    var keyscope__13 = "[" + ((for__12++) + "]");
+    var keyscope__29 = "[" + ((for__28++) + "]");
 
     out.w("<tr" +
       marko_attr("id", `book_${book.id}`) +
@@ -44,11 +44,11 @@ function render(input, out, __component, component, state) {
       " data-method=\"DELETE\">Remover</a></td></tr>");
   });
 
-  out.w("</table> <script src=\"/static/js/remove-book.js\"></script>");
+  out.w("</tbody></table> </div></main> <footer class=\"footer\"><div class=\"container\"><div class=\"row align-items-center\"><div class=\"col-4\"><img src=\"/static/images/logo-footer.svg\" class=\"logo-footer\"></div><div class=\"col-8\"><ul class=\"socialNetworks\"><li><a href=\"http://www.facebook.com/casadocodigo\" class=\"share-facebook\" target=\"_blank\">/CasaDoCodigo</a></li><li><a href=\"http://www.twitter.com/casadocodigo\" class=\"share-twitter\" target=\"_blank\">@casadocodigo</a></li></ul></div></div></div></footer><script src=\"/static/js/remove-book.js\"></script>");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "23");
+  await_reorderer_tag({}, out, __component, "50");
 
   out.w("</body> </html>");
 }

@@ -1,0 +1,63 @@
+.mainHeader {
+    background-color: #FFAA60;
+}
+
+.mainHeader .logo {
+    margin: 0;
+}
+
+.mainHeader-navigation {
+    text-align: right;
+}
+
+.mainHeader-navigation .login {
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 38px;
+    font-size: 20px;
+    padding: 5px;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.mainHeader-navigation .login i {
+    margin-right: 10px;
+}
+
+.mainContent {
+    min-height: 70%;
+}
+
+.footer {
+    background-color: #FBFAF9;
+    border-top: 1px solid #EBEBEE;
+}
+
+.footer .logo-footer {
+    width: 80px;
+    height: 105px;
+    margin: 10px;
+}
+
+.footer .socialNetworks {
+    list-style: none;
+    text-align: right;
+}
+
+.footer .socialNetworks li a {
+    color: #6C6A69;
+    font-weight: 500;
+
+    display: inline-block;
+    padding-left: 40px;
+    background-repeat: no-repeat;
+    background-position: 0 50%;
+    line-height: 2.7;
+}
+
+.footer .socialNetworks .share-facebook {
+    background-image: url('/static/images/facebook.png');
+}
+
+.footer .socialNetworks .share-twitter {
+    background-image: url('/static/images/twitter.png');
+}

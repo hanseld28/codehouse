@@ -1,3 +1,5 @@
+const { check, validationResult } = require('express-validator/check');
+
 const BookDAO = require('../architecture/dao/BookDAO');
 const db = require('../../config/database');
 
@@ -7,17 +9,8 @@ module.exports = (app) => {
 
         console.log(`${request.method} request to endpoint -> ${request.url}`);
         
-        response.send(
-            `
-                <html>
-                    <head>
-                        <meta charset="utf-8">
-                    </head>
-                    <body>
-                        <h1> Casa do Código </h1>
-                    </body> 
-                </html>
-            `
+        return response.marko(
+            require('../views/home/home.marko')
         );
     });
 
@@ -54,30 +47,39 @@ module.exports = (app) => {
         )
     })
 
-    app.post('/books', function(request, response) {
-        console.log(`${request.method} request to endpoint -> ${request.url}`);
-        console.log('Request body: ' + request.body);
+    app.post('/books', [
+            check('title').isLength({ min: 5 }).withMessage('O título precisa ter no mínimo 5 caracteres.'),
+            check('price').isCurrency().withMessage('O preço precisa ter um valor monetário válido.')
+        ], function(request, response) {
+            console.log(`${request.method} request to endpoint -> ${request.url}`);
+            console.log('Request body: ' + request.body);
 
-        const { 
-            title, 
-            price, 
-            description 
-        } = request.body;
+            const bookToAdd = request.body;
 
-        const bookToAdd = {
-            title,
-            price,
-            description
-        }
+            const validationErrors = validationResult(request);
 
-        const bookDAO = new BookDAO(db);
-        bookDAO.add(bookToAdd)
-            .then(
-                response.redirect('/books')
-            )
-            .catch(
-                error => console.error(error)
-            );
+            if (!validationErrors.isEmpty()) {
+                return response.marko(
+                    require('../views/books/form/form.marko'),
+                    { 
+                        book: {
+                            id: null,
+                            ...bookToAdd
+                        },
+                        validationErrors: validationErrors.array() 
+                    }
+                ) 
+            }
+            
+            const bookDAO = new BookDAO(db);
+            
+            bookDAO.add(bookToAdd)
+                .then(
+                    response.redirect('/books')
+                )
+                .catch(
+                    error => console.error(error)
+                );
     })
 
     app.get('/books/:id/edit', function(request, response) {
@@ -100,33 +102,36 @@ module.exports = (app) => {
             .catch(error => console.error(error));
     });
 
-    app.put('/books', function(request, response) {
-        console.log(`${request.method} request to endpoint -> ${request.url}`);
-        console.log('Request body: ' + request.body);
+    app.put('/books', [
+            check('title').isLength({ min: 5 }).withMessage('O título precisa ter no mínimo 5 caracteres.'),
+            check('price').isCurrency().withMessage('O preço precisa ter um valor monetário válido.')
+        ], function(request, response) {
+            console.log(`${request.method} request to endpoint -> ${request.url}`);
+            console.log('Request body: ' + request.body);
 
-        const { 
-            id,
-            title, 
-            price, 
-            description 
-        } = request.body;
+            const bookToAdd = request.body;
 
-        const bookToAdd = {
-            id,
-            title,
-            price,
-            description
-        }
+            const validationErrors = validationResult(request);
 
-        const bookDAO = new BookDAO(db);
-        bookDAO.update(bookToAdd)
-            .then(
-                response.redirect('/books')
-            )
-            .catch(
-                error => console.error(error)
-            );
-    });
+            if (!validationErrors.isEmpty()) {
+                return response.marko(
+                    require('../views/books/form/form.marko'),
+                    { 
+                        book: bookToAdd,
+                        validationErrors: validationErrors.array() 
+                    }
+                ) 
+            }
+
+            const bookDAO = new BookDAO(db);
+            bookDAO.update(bookToAdd)
+                .then(
+                    response.redirect('/books')
+                )
+                .catch(
+                    error => console.error(error)
+                );
+        });
 
     app.delete('/books/:id', function(request, response) {
 

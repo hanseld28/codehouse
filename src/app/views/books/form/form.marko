@@ -12,10 +12,14 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-4">
-                        <h1 class="logo"><img src="/static/images/logo-codehouse.svg" alt="Casa do Código" /></h1>
+                        <a href="/">
+                            <h1 class="logo">
+                                <img src="/static/images/logo-codehouse.svg" alt="Casa do Código" />
+                            </h1>
+                        </a>
                     </div>
                     <div class="mainHeader-navigation col-8">
-                        <a href="#" class="login">
+                        <a href="/login" class="login">
                             <i class="fas fa-sign-in-alt"></i>Login
                         </a>
                     </div>
@@ -27,7 +31,7 @@
             <div class="container">
                 <h1>Cadastro de livros</h1>
 
-                <form action="/books" method="post">
+                <form action="/books/register" method="post">
 
                     <div if(data.validationErrors)>
                         <div 

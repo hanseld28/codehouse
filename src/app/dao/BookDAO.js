@@ -1,10 +1,17 @@
-class LivroDAO {
+class BookDAO {
 
     constructor(db) {
         this._db = db;
     }
 
-    add({ title, price, description }) {
+    save(book) {
+        
+        if (book.id) {
+            return this._update(book);
+        }
+
+        const { title, price, description } = book;
+
         return new Promise((resolve, reject) => {
             this._db.run(`
                 INSERT INTO books (
@@ -69,7 +76,7 @@ class LivroDAO {
         
     }
 
-    update({ id, title, price, description }) {
+    _update({ id, title, price, description }) {
 
         return new Promise((resolve, reject) => {
             this._db.run(`
@@ -117,4 +124,4 @@ class LivroDAO {
 
 }
 
-module.exports = LivroDAO;
+module.exports = BookDAO;

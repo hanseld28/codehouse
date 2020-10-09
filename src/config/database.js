@@ -35,7 +35,7 @@ const INSERT_BOOK_1 =
         title,
         price,
         description
-    ) SELECT 'Node na prática', 30.0, 'Como desenvolver com Node.' WHERE NOT EXISTS (SELECT * FROM books WHERE title = 'Node na prática')
+    ) SELECT 'Node na prática - Parte 1', 30.0, 'Primeira parte da série de livros: "Como desenvolver com Node".' WHERE NOT EXISTS (SELECT * FROM books WHERE title = 'Node na prática - Parte 1')
 `;
 
 const INSERT_BOOK_2 = 

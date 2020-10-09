@@ -22,15 +22,15 @@ function render(input, out, __component, component, state) {
 
   component_globals_tag({}, out);
 
-  out.w("<header class=\"mainHeader\"><div class=\"container\"><div class=\"row align-items-center\"><div class=\"col-4\"><h1 class=\"logo\"><img src=\"/static/images/logo-codehouse.svg\" alt=\"Casa do Código\"></h1></div><div class=\"mainHeader-navigation col-8\"><a href=\"#\" class=\"login\"><i class=\"fas fa-sign-in-alt\"></i>Login</a></div></div></div></header><main class=\"mainContent\"><div class=\"container\"><h1>Cadastro de livros</h1><form action=\"/books\" method=\"post\">");
+  out.w("<header class=\"mainHeader\"><div class=\"container\"><div class=\"row align-items-center\"><div class=\"col-4\"><a href=\"/\"><h1 class=\"logo\"><img src=\"/static/images/logo-codehouse.svg\" alt=\"Casa do Código\"></h1></a></div><div class=\"mainHeader-navigation col-8\"><a href=\"/login\" class=\"login\"><i class=\"fas fa-sign-in-alt\"></i>Login</a></div></div></div></header><main class=\"mainContent\"><div class=\"container\"><h1>Cadastro de livros</h1><form action=\"/books/register\" method=\"post\">");
 
   if (data.validationErrors) {
     out.w("<div>");
 
-    var for__21 = 0;
+    var for__22 = 0;
 
     marko_forEach(data.validationErrors, function(error) {
-      var keyscope__22 = "[" + ((for__21++) + "]");
+      var keyscope__23 = "[" + ((for__22++) + "]");
 
       out.w("<div class=\"alert alert-danger\">" +
         marko_escapeXml(error.msg) +
@@ -56,7 +56,7 @@ function render(input, out, __component, component, state) {
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "48");
+  await_reorderer_tag({}, out, __component, "49");
 
   out.w("</body></html>");
 }

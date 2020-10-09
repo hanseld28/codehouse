@@ -22,12 +22,12 @@ function render(input, out, __component, component, state) {
 
   component_globals_tag({}, out);
 
-  out.w("<header class=\"mainHeader\"><div class=\"container\"><div class=\"row align-items-center\"><div class=\"col-4\"><h1 class=\"logo\"><img src=\"/static/images/logo-codehouse.svg\" alt=\"Casa do Código\"></h1></div><div class=\"mainHeader-navigation col-8\"><a href=\"#\" class=\"login\"><i class=\"fas fa-sign-in-alt\"></i>Login</a></div></div></div></header><main class=\"mainContent\"><div class=\"container\"><h1> Listagem de livros </h1><table id=\"booksTable\" class=\"table table-striped table-hover\"><thead class=\"thead-dark\"><tr><td>ID</td><td>Título</td><td>Preço</td><td>Editar</td><td>Remover</td></tr></thead><tbody>");
+  out.w("<header class=\"mainHeader\"><div class=\"container\"><div class=\"row align-items-center\"><div class=\"col-4\"><a href=\"/\"><h1 class=\"logo\"><img src=\"/static/images/logo-codehouse.svg\" alt=\"Casa do Código\"></h1></a></div><div class=\"mainHeader-navigation col-8\"><a href=\"/login\" class=\"login\"><i class=\"fas fa-sign-in-alt\"></i>Login</a></div></div></div></header><main class=\"mainContent\"><div class=\"container\"><div class=\"row mt-5\"><div class=\"col-10 mb-2\"><h1>Listagem de livros</h1></div> <div class=\"col-2\"><a href=\"/books/register\" class=\"btn btn-success btn-block\">Novo</a></div></div><table id=\"booksTable\" class=\"table table-striped table-hover\"><thead><tr><td>ID</td><td>Título</td><td>Preço</td><td>Editar</td><td>Remover</td></tr></thead><tbody>");
 
-  var for__28 = 0;
+  var for__33 = 0;
 
   marko_forEach(data.books, function(book) {
-    var keyscope__29 = "[" + ((for__28++) + "]");
+    var keyscope__34 = "[" + ((for__33++) + "]");
 
     out.w("<tr" +
       marko_attr("id", `book_${book.id}`) +
@@ -48,7 +48,7 @@ function render(input, out, __component, component, state) {
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "50");
+  await_reorderer_tag({}, out, __component, "55");
 
   out.w("</body> </html>");
 }
